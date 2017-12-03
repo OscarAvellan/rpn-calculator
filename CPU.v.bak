@@ -1,0 +1,34 @@
+`include "CPU.vh"
+
+// CPU Module
+
+module CPU(
+
+	//Data in
+	input [7:0] Din,
+
+	// Buttons
+	input [2:0] Btns,
+
+	input Clock,
+	input Reset,
+	input Turbo,
+	input Sample,
+
+	// Data out
+	output [7:0] Dout,
+
+	// Data Valid
+	output Dval,
+
+	//General Purpose output
+	output [5:0] GPO,
+	output [3:0] Debug,
+
+	// Instruction Pointer
+	output [7:0] IP
+);
+
+
+endmodule
+

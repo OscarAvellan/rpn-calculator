@@ -1,0 +1,58 @@
+`include "CPU.vh"
+
+// Asynchronous ROM (Program Memory)
+
+// COMMAND GROUP
+`define NOP 4'b000
+`define JMP 4'b1000
+`define ATC 4'b0100
+`define MOV 4'b0010
+`define ACC 4'b0001
+
+// Commands JMP
+`define UNC 3'b000
+`define EQ 3'b010
+`define ULT 3'b100
+`define SLT 3'b101
+`define ULE 3'b110
+`define SLE 3'b111
+
+// Commands MOV
+`define PUR 3'b000
+`define SHL 3'b001
+`define SHR 3'b010
+
+// Commands ACC
+`define UAD 3'b000
+`define SAD 3'b001
+`define UMT 3'b010
+`define SMT 3'b011
+`define AND 3'b100
+`define OR 3'b101
+`define XOR 3'b110
+
+
+`define NUM 2'b00
+`define REG 2'b01
+`define N8 8'd0
+`define RDOUT 8'd30
+`define RGOUT 8'd29
+
+module AsyncROM(input [7:0] addr, output reg [34:0] data);
+	always@(addr)
+		case(addr)
+			0: data = {`MOV, `PUR, `NUM, 8'd1, `REG, `DOUT, `N8};
+			1: data = {`MOV, `PUR, `NUM, 8'd3, `REG, `DOUT, `N8};
+			2: data = {`MOV, `PUR, `NUM, 8'd5, `REG, `DOUT, `N8};
+			3: data = {`MOV, `PUR, `NUM, 8'd7, `REG, `DOUT, `N8};
+			4: data = {`MOV, `PUR, `NUM, 8'd9, `REG, `DOUT, `N8};
+			5: data = {`MOV, `PUR, `NUM, 8'd11, `REG, `DOUT, `N8};
+			6: data = {`MOV, `PUR, `NUM, 8'd13, `REG, `DOUT, `N8};
+			7: data = {`MOV, `PUR, `NUM, 8'd15, `REG, `DOUT, `N8};
+			8: data = {`MOV, `PUR, `NUM, 8'd17, `REG, `DOUT, `N8};
+			9: data = {`MOV, `PUR, `NUM, 8'd19, `REG, `DOUT, `N8};
+			default: data = 35`b0; // Default instruction is a NOP
+		endcase
+		
+endmodule
+

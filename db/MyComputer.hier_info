@@ -1,0 +1,912 @@
+|MyComputer
+CLOCK_50 => CLOCK_50.IN2
+HEX0[0] << Disp2cNum:dnum.hex0
+HEX0[1] << Disp2cNum:dnum.hex0
+HEX0[2] << Disp2cNum:dnum.hex0
+HEX0[3] << Disp2cNum:dnum.hex0
+HEX0[4] << Disp2cNum:dnum.hex0
+HEX0[5] << Disp2cNum:dnum.hex0
+HEX0[6] << Disp2cNum:dnum.hex0
+HEX1[0] << Disp2cNum:dnum.hex1
+HEX1[1] << Disp2cNum:dnum.hex1
+HEX1[2] << Disp2cNum:dnum.hex1
+HEX1[3] << Disp2cNum:dnum.hex1
+HEX1[4] << Disp2cNum:dnum.hex1
+HEX1[5] << Disp2cNum:dnum.hex1
+HEX1[6] << Disp2cNum:dnum.hex1
+HEX2[0] << Disp2cNum:dnum.hex2
+HEX2[1] << Disp2cNum:dnum.hex2
+HEX2[2] << Disp2cNum:dnum.hex2
+HEX2[3] << Disp2cNum:dnum.hex2
+HEX2[4] << Disp2cNum:dnum.hex2
+HEX2[5] << Disp2cNum:dnum.hex2
+HEX2[6] << Disp2cNum:dnum.hex2
+HEX3[0] << Disp2cNum:dnum.hex3
+HEX3[1] << Disp2cNum:dnum.hex3
+HEX3[2] << Disp2cNum:dnum.hex3
+HEX3[3] << Disp2cNum:dnum.hex3
+HEX3[4] << Disp2cNum:dnum.hex3
+HEX3[5] << Disp2cNum:dnum.hex3
+HEX3[6] << Disp2cNum:dnum.hex3
+HEX4[0] << DispHex:dhex.hex4
+HEX4[1] << DispHex:dhex.hex4
+HEX4[2] << DispHex:dhex.hex4
+HEX4[3] << DispHex:dhex.hex4
+HEX4[4] << DispHex:dhex.hex4
+HEX4[5] << DispHex:dhex.hex4
+HEX4[6] << DispHex:dhex.hex4
+HEX5[0] << DispHex:dhex.hex5
+HEX5[1] << DispHex:dhex.hex5
+HEX5[2] << DispHex:dhex.hex5
+HEX5[3] << DispHex:dhex.hex5
+HEX5[4] << DispHex:dhex.hex5
+HEX5[5] << DispHex:dhex.hex5
+HEX5[6] << DispHex:dhex.hex5
+KEY[0] => _.IN1
+KEY[1] => _.IN1
+KEY[2] => _.IN1
+KEY[3] => _.IN1
+LEDR[0] << CPU:cpu.GPO
+LEDR[1] << CPU:cpu.GPO
+LEDR[2] << CPU:cpu.GPO
+LEDR[3] << CPU:cpu.GPO
+LEDR[4] << CPU:cpu.GPO
+LEDR[5] << CPU:cpu.GPO
+LEDR[6] << CPU:cpu.Debug
+LEDR[7] << CPU:cpu.Debug
+LEDR[8] << CPU:cpu.Debug
+LEDR[9] << CPU:cpu.Debug
+SW[0] => SW[0].IN1
+SW[1] => SW[1].IN1
+SW[2] => SW[2].IN1
+SW[3] => SW[3].IN1
+SW[4] => SW[4].IN1
+SW[5] => SW[5].IN1
+SW[6] => SW[6].IN1
+SW[7] => SW[7].IN1
+SW[8] => SW[8].IN1
+SW[9] => SW[9].IN1
+
+
+|MyComputer|Debounce:debouncer
+clock => clock.IN1
+signalIn => signalIn.IN1
+signalDebounced <= signalDebounced~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|Debounce:debouncer|Synchroniser:s
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|Debounce:debouncer|Synchroniser:s|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|Debounce:debouncer|Synchroniser:s|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu
+Din[0] => Din[0].IN1
+Din[1] => Din[1].IN1
+Din[2] => Din[2].IN1
+Din[3] => Din[3].IN1
+Din[4] => Din[4].IN1
+Din[5] => Din[5].IN1
+Din[6] => Din[6].IN1
+Din[7] => Din[7].IN1
+Btns[0] => Btns[0].IN1
+Btns[1] => Btns[1].IN1
+Btns[2] => Btns[2].IN1
+Clock => Clock.IN17
+Reset => IP.OUTPUTSELECT
+Reset => IP.OUTPUTSELECT
+Reset => IP.OUTPUTSELECT
+Reset => IP.OUTPUTSELECT
+Reset => IP.OUTPUTSELECT
+Reset => IP.OUTPUTSELECT
+Reset => IP.OUTPUTSELECT
+Reset => IP.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => Reg.OUTPUTSELECT
+Reset => comb.IN1
+Turbo => Turbo.IN1
+Sample => Sample.IN1
+Dout[0] <= Reg[30][0].DB_MAX_OUTPUT_PORT_TYPE
+Dout[1] <= Reg[30][1].DB_MAX_OUTPUT_PORT_TYPE
+Dout[2] <= Reg[30][2].DB_MAX_OUTPUT_PORT_TYPE
+Dout[3] <= Reg[30][3].DB_MAX_OUTPUT_PORT_TYPE
+Dout[4] <= Reg[30][4].DB_MAX_OUTPUT_PORT_TYPE
+Dout[5] <= Reg[30][5].DB_MAX_OUTPUT_PORT_TYPE
+Dout[6] <= Reg[30][6].DB_MAX_OUTPUT_PORT_TYPE
+Dout[7] <= Reg[30][7].DB_MAX_OUTPUT_PORT_TYPE
+Dval <= Reg[29][7].DB_MAX_OUTPUT_PORT_TYPE
+GPO[0] <= Reg[29][0].DB_MAX_OUTPUT_PORT_TYPE
+GPO[1] <= Reg[29][1].DB_MAX_OUTPUT_PORT_TYPE
+GPO[2] <= Reg[29][2].DB_MAX_OUTPUT_PORT_TYPE
+GPO[3] <= Reg[29][3].DB_MAX_OUTPUT_PORT_TYPE
+GPO[4] <= Reg[29][4].DB_MAX_OUTPUT_PORT_TYPE
+GPO[5] <= Reg[29][5].DB_MAX_OUTPUT_PORT_TYPE
+Debug[0] <= comb.DB_MAX_OUTPUT_PORT_TYPE
+Debug[1] <= Reg[31][3].DB_MAX_OUTPUT_PORT_TYPE
+Debug[2] <= Reg[31][4].DB_MAX_OUTPUT_PORT_TYPE
+Debug[3] <= Reg[31][5].DB_MAX_OUTPUT_PORT_TYPE
+IP[0] <= IP[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+IP[1] <= IP[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+IP[2] <= IP[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+IP[3] <= IP[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+IP[4] <= IP[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+IP[5] <= IP[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+IP[6] <= IP[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+IP[7] <= IP[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:tbo
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|CPU:cpu|Synchroniser:tbo|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:tbo|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din0
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|CPU:cpu|Synchroniser:din0|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din0|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din1
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|CPU:cpu|Synchroniser:din1|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din1|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din2
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|CPU:cpu|Synchroniser:din2|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din2|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din3
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|CPU:cpu|Synchroniser:din3|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din3|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din4
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|CPU:cpu|Synchroniser:din4|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din4|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din5
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|CPU:cpu|Synchroniser:din5|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din5|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din6
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|CPU:cpu|Synchroniser:din6|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din6|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din7
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|CPU:cpu|Synchroniser:din7|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:din7|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:btn0
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|CPU:cpu|Synchroniser:btn0|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:btn0|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:btn1
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|CPU:cpu|Synchroniser:btn1|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:btn1|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:btn2
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|CPU:cpu|Synchroniser:btn2|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:btn2|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:smpl
+clock => clock.IN2
+signalIn => signalIn.IN1
+syncSignal <= MyDFF:dff2.q
+
+
+|MyComputer|CPU:cpu|Synchroniser:smpl|MyDFF:dff1
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|Synchroniser:smpl|MyDFF:dff2
+clock => q~reg0.CLK
+data => q~reg0.DATAIN
+q <= q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|DetectFallingEdge:pb[0].dfe
+clock => dff.CLK
+pb_safe => dff.DATAIN
+pb_safe => pb_activated.IN1
+pb_activated <= pb_activated.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|DetectFallingEdge:pb[1].dfe
+clock => dff.CLK
+pb_safe => dff.DATAIN
+pb_safe => pb_activated.IN1
+pb_activated <= pb_activated.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|DetectFallingEdge:pb[2].dfe
+clock => dff.CLK
+pb_safe => dff.DATAIN
+pb_safe => pb_activated.IN1
+pb_activated <= pb_activated.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|DetectFallingEdge:pb[3].dfe
+clock => dff.CLK
+pb_safe => dff.DATAIN
+pb_safe => pb_activated.IN1
+pb_activated <= pb_activated.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|CPU:cpu|AsyncROM:Pmem
+addr[0] => Decoder0.IN7
+addr[1] => Decoder0.IN6
+addr[2] => Decoder0.IN5
+addr[3] => Decoder0.IN4
+addr[4] => Decoder0.IN3
+addr[5] => Decoder0.IN2
+addr[6] => Decoder0.IN1
+addr[7] => Decoder0.IN0
+data[0] <= WideOr25.DB_MAX_OUTPUT_PORT_TYPE
+data[1] <= WideOr24.DB_MAX_OUTPUT_PORT_TYPE
+data[2] <= WideOr23.DB_MAX_OUTPUT_PORT_TYPE
+data[3] <= WideOr22.DB_MAX_OUTPUT_PORT_TYPE
+data[4] <= WideOr21.DB_MAX_OUTPUT_PORT_TYPE
+data[5] <= WideOr20.DB_MAX_OUTPUT_PORT_TYPE
+data[6] <= <GND>
+data[7] <= <GND>
+data[8] <= WideOr19.DB_MAX_OUTPUT_PORT_TYPE
+data[9] <= WideOr18.DB_MAX_OUTPUT_PORT_TYPE
+data[10] <= WideOr17.DB_MAX_OUTPUT_PORT_TYPE
+data[11] <= WideOr16.DB_MAX_OUTPUT_PORT_TYPE
+data[12] <= WideOr15.DB_MAX_OUTPUT_PORT_TYPE
+data[13] <= data.DB_MAX_OUTPUT_PORT_TYPE
+data[14] <= WideOr14.DB_MAX_OUTPUT_PORT_TYPE
+data[15] <= WideOr13.DB_MAX_OUTPUT_PORT_TYPE
+data[16] <= WideOr12.DB_MAX_OUTPUT_PORT_TYPE
+data[17] <= <GND>
+data[18] <= WideOr11.DB_MAX_OUTPUT_PORT_TYPE
+data[19] <= WideOr10.DB_MAX_OUTPUT_PORT_TYPE
+data[20] <= WideOr9.DB_MAX_OUTPUT_PORT_TYPE
+data[21] <= WideOr8.DB_MAX_OUTPUT_PORT_TYPE
+data[22] <= WideOr8.DB_MAX_OUTPUT_PORT_TYPE
+data[23] <= <GND>
+data[24] <= <GND>
+data[25] <= <GND>
+data[26] <= WideOr7.DB_MAX_OUTPUT_PORT_TYPE
+data[27] <= <GND>
+data[28] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+data[29] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+data[30] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+data[31] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+data[32] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+data[33] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+data[34] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|Disp2cNum:dnum
+Number[0] => LessThan0.IN64
+Number[0] => comb.DATAA
+Number[0] => Add0.IN9
+Number[1] => LessThan0.IN63
+Number[1] => comb.DATAA
+Number[1] => Add0.IN8
+Number[2] => LessThan0.IN62
+Number[2] => comb.DATAA
+Number[2] => Add0.IN7
+Number[3] => LessThan0.IN61
+Number[3] => comb.DATAA
+Number[3] => Add0.IN6
+Number[4] => LessThan0.IN60
+Number[4] => comb.DATAA
+Number[4] => Add0.IN5
+Number[5] => LessThan0.IN59
+Number[5] => comb.DATAA
+Number[5] => Add0.IN4
+Number[6] => LessThan0.IN58
+Number[6] => comb.DATAA
+Number[6] => Add0.IN3
+Number[7] => LessThan0.IN33
+Number[7] => LessThan0.IN34
+Number[7] => LessThan0.IN35
+Number[7] => LessThan0.IN36
+Number[7] => LessThan0.IN37
+Number[7] => LessThan0.IN38
+Number[7] => LessThan0.IN39
+Number[7] => LessThan0.IN40
+Number[7] => LessThan0.IN41
+Number[7] => LessThan0.IN42
+Number[7] => LessThan0.IN43
+Number[7] => LessThan0.IN44
+Number[7] => LessThan0.IN45
+Number[7] => LessThan0.IN46
+Number[7] => LessThan0.IN47
+Number[7] => LessThan0.IN48
+Number[7] => LessThan0.IN49
+Number[7] => LessThan0.IN50
+Number[7] => LessThan0.IN51
+Number[7] => LessThan0.IN52
+Number[7] => LessThan0.IN53
+Number[7] => LessThan0.IN54
+Number[7] => LessThan0.IN55
+Number[7] => LessThan0.IN56
+Number[7] => LessThan0.IN57
+Number[7] => comb.DATAA
+Number[7] => Add0.IN2
+enable => enable.IN1
+hex0[0] <= DispDec:d1.segs
+hex0[1] <= DispDec:d1.segs
+hex0[2] <= DispDec:d1.segs
+hex0[3] <= DispDec:d1.segs
+hex0[4] <= DispDec:d1.segs
+hex0[5] <= DispDec:d1.segs
+hex0[6] <= DispDec:d1.segs
+hex1[0] <= DispDec:d2.segs
+hex1[1] <= DispDec:d2.segs
+hex1[2] <= DispDec:d2.segs
+hex1[3] <= DispDec:d2.segs
+hex1[4] <= DispDec:d2.segs
+hex1[5] <= DispDec:d2.segs
+hex1[6] <= DispDec:d2.segs
+hex2[0] <= DispDec:d3.segs
+hex2[1] <= DispDec:d3.segs
+hex2[2] <= DispDec:d3.segs
+hex2[3] <= DispDec:d3.segs
+hex2[4] <= DispDec:d3.segs
+hex2[5] <= DispDec:d3.segs
+hex2[6] <= DispDec:d3.segs
+hex3[0] <= DispDec:d4.segs
+hex3[1] <= DispDec:d4.segs
+hex3[2] <= DispDec:d4.segs
+hex3[3] <= DispDec:d4.segs
+hex3[4] <= DispDec:d4.segs
+hex3[5] <= DispDec:d4.segs
+hex3[6] <= DispDec:d4.segs
+
+
+|MyComputer|Disp2cNum:dnum|DispDec:d1
+Number[0] => Mod0.IN11
+Number[0] => Div0.IN11
+Number[1] => Mod0.IN10
+Number[1] => Div0.IN10
+Number[2] => Mod0.IN9
+Number[2] => Div0.IN9
+Number[3] => Mod0.IN8
+Number[3] => Div0.IN8
+Number[4] => Mod0.IN7
+Number[4] => Div0.IN7
+Number[5] => Mod0.IN6
+Number[5] => Div0.IN6
+Number[6] => Mod0.IN5
+Number[6] => Div0.IN5
+Number[7] => Mod0.IN4
+Number[7] => Div0.IN4
+neg => n.IN1
+neg => enOut.IN0
+enable => enable.IN1
+numOut[0] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[1] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[2] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[3] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[4] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[5] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[6] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[7] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+enOut <= enOut.DB_MAX_OUTPUT_PORT_TYPE
+segs[0] <= SSeg:s.segs
+segs[1] <= SSeg:s.segs
+segs[2] <= SSeg:s.segs
+segs[3] <= SSeg:s.segs
+segs[4] <= SSeg:s.segs
+segs[5] <= SSeg:s.segs
+segs[6] <= SSeg:s.segs
+
+
+|MyComputer|Disp2cNum:dnum|DispDec:d1|SSeg:s
+bin[0] => Decoder0.IN3
+bin[1] => Decoder0.IN2
+bin[2] => Decoder0.IN1
+bin[3] => Decoder0.IN0
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+segs[0] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[1] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[2] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[3] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[4] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[5] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[6] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|Disp2cNum:dnum|DispDec:d2
+Number[0] => Mod0.IN11
+Number[0] => Div0.IN11
+Number[1] => Mod0.IN10
+Number[1] => Div0.IN10
+Number[2] => Mod0.IN9
+Number[2] => Div0.IN9
+Number[3] => Mod0.IN8
+Number[3] => Div0.IN8
+Number[4] => Mod0.IN7
+Number[4] => Div0.IN7
+Number[5] => Mod0.IN6
+Number[5] => Div0.IN6
+Number[6] => Mod0.IN5
+Number[6] => Div0.IN5
+Number[7] => Mod0.IN4
+Number[7] => Div0.IN4
+neg => n.IN1
+neg => enOut.IN0
+enable => enable.IN1
+numOut[0] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[1] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[2] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[3] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[4] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[5] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[6] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[7] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+enOut <= enOut.DB_MAX_OUTPUT_PORT_TYPE
+segs[0] <= SSeg:s.segs
+segs[1] <= SSeg:s.segs
+segs[2] <= SSeg:s.segs
+segs[3] <= SSeg:s.segs
+segs[4] <= SSeg:s.segs
+segs[5] <= SSeg:s.segs
+segs[6] <= SSeg:s.segs
+
+
+|MyComputer|Disp2cNum:dnum|DispDec:d2|SSeg:s
+bin[0] => Decoder0.IN3
+bin[1] => Decoder0.IN2
+bin[2] => Decoder0.IN1
+bin[3] => Decoder0.IN0
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+segs[0] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[1] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[2] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[3] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[4] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[5] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[6] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|Disp2cNum:dnum|DispDec:d3
+Number[0] => Mod0.IN11
+Number[0] => Div0.IN11
+Number[1] => Mod0.IN10
+Number[1] => Div0.IN10
+Number[2] => Mod0.IN9
+Number[2] => Div0.IN9
+Number[3] => Mod0.IN8
+Number[3] => Div0.IN8
+Number[4] => Mod0.IN7
+Number[4] => Div0.IN7
+Number[5] => Mod0.IN6
+Number[5] => Div0.IN6
+Number[6] => Mod0.IN5
+Number[6] => Div0.IN5
+Number[7] => Mod0.IN4
+Number[7] => Div0.IN4
+neg => n.IN1
+neg => enOut.IN0
+enable => enable.IN1
+numOut[0] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[1] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[2] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[3] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[4] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[5] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[6] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[7] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+enOut <= enOut.DB_MAX_OUTPUT_PORT_TYPE
+segs[0] <= SSeg:s.segs
+segs[1] <= SSeg:s.segs
+segs[2] <= SSeg:s.segs
+segs[3] <= SSeg:s.segs
+segs[4] <= SSeg:s.segs
+segs[5] <= SSeg:s.segs
+segs[6] <= SSeg:s.segs
+
+
+|MyComputer|Disp2cNum:dnum|DispDec:d3|SSeg:s
+bin[0] => Decoder0.IN3
+bin[1] => Decoder0.IN2
+bin[2] => Decoder0.IN1
+bin[3] => Decoder0.IN0
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+segs[0] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[1] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[2] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[3] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[4] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[5] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[6] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|Disp2cNum:dnum|DispDec:d4
+Number[0] => Mod0.IN11
+Number[0] => Div0.IN11
+Number[1] => Mod0.IN10
+Number[1] => Div0.IN10
+Number[2] => Mod0.IN9
+Number[2] => Div0.IN9
+Number[3] => Mod0.IN8
+Number[3] => Div0.IN8
+Number[4] => Mod0.IN7
+Number[4] => Div0.IN7
+Number[5] => Mod0.IN6
+Number[5] => Div0.IN6
+Number[6] => Mod0.IN5
+Number[6] => Div0.IN5
+Number[7] => Mod0.IN4
+Number[7] => Div0.IN4
+neg => n.IN1
+neg => enOut.IN0
+enable => enable.IN1
+numOut[0] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[1] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[2] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[3] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[4] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[5] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[6] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+numOut[7] <= Div0.DB_MAX_OUTPUT_PORT_TYPE
+enOut <= enOut.DB_MAX_OUTPUT_PORT_TYPE
+segs[0] <= SSeg:s.segs
+segs[1] <= SSeg:s.segs
+segs[2] <= SSeg:s.segs
+segs[3] <= SSeg:s.segs
+segs[4] <= SSeg:s.segs
+segs[5] <= SSeg:s.segs
+segs[6] <= SSeg:s.segs
+
+
+|MyComputer|Disp2cNum:dnum|DispDec:d4|SSeg:s
+bin[0] => Decoder0.IN3
+bin[1] => Decoder0.IN2
+bin[2] => Decoder0.IN1
+bin[3] => Decoder0.IN0
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+segs[0] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[1] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[2] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[3] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[4] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[5] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[6] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|DispHex:dhex
+ip[0] => SSeg:seg2.bin[0]
+ip[1] => SSeg:seg2.bin[1]
+ip[2] => SSeg:seg2.bin[2]
+ip[3] => SSeg:seg2.bin[3]
+ip[4] => SSeg:seg1.bin[0]
+ip[5] => SSeg:seg1.bin[1]
+ip[6] => SSeg:seg1.bin[2]
+ip[7] => SSeg:seg1.bin[3]
+hex4[0] <= SSeg:seg2.segs[0]
+hex4[1] <= SSeg:seg2.segs[1]
+hex4[2] <= SSeg:seg2.segs[2]
+hex4[3] <= SSeg:seg2.segs[3]
+hex4[4] <= SSeg:seg2.segs[4]
+hex4[5] <= SSeg:seg2.segs[5]
+hex4[6] <= SSeg:seg2.segs[6]
+hex5[0] <= SSeg:seg1.segs[0]
+hex5[1] <= SSeg:seg1.segs[1]
+hex5[2] <= SSeg:seg1.segs[2]
+hex5[3] <= SSeg:seg1.segs[3]
+hex5[4] <= SSeg:seg1.segs[4]
+hex5[5] <= SSeg:seg1.segs[5]
+hex5[6] <= SSeg:seg1.segs[6]
+
+
+|MyComputer|DispHex:dhex|SSeg:seg1
+bin[0] => Decoder0.IN3
+bin[1] => Decoder0.IN2
+bin[2] => Decoder0.IN1
+bin[3] => Decoder0.IN0
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+segs[0] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[1] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[2] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[3] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[4] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[5] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[6] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MyComputer|DispHex:dhex|SSeg:seg2
+bin[0] => Decoder0.IN3
+bin[1] => Decoder0.IN2
+bin[2] => Decoder0.IN1
+bin[3] => Decoder0.IN0
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+neg => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+enable => segs.OUTPUTSELECT
+segs[0] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[1] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[2] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[3] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[4] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[5] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+segs[6] <= segs.DB_MAX_OUTPUT_PORT_TYPE
+
+
